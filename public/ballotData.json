@@ -1,0 +1,33 @@
+{"cardData":{"category1":[
+  {
+    "category":"category 1",
+    "title": "Nominee 1",
+    "imageUrl": "../../assets/34999535.jpg"
+  },
+  {
+    "category":"category 1",
+    "title": "Nominee 2",
+    "imageUrl": "../../assets/34999535.jpg"
+  },
+  {
+    "category":"category 1",
+    "title": "Nominee 3",
+    "imageUrl": "../../assets/34999535.jpg"
+  }],
+  "category2":[
+  {
+    "category":"category 2",
+    "title": "Nominee 4",
+    "imageUrl": "../../assets/34999535.jpg"
+  },
+  {
+    "category":"category 2",
+    "title": "Nominee 5",
+    "imageUrl": "../../assets/34999535.jpg"
+  },
+  {
+    "category":"category 2",
+    "title": "Nominee 5",
+    "imageUrl": "../../assets/34999535.jpg"
+  }
+]}}

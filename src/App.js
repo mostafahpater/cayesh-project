@@ -1,25 +1,39 @@
 import logo from './logo.svg';
 import './App.css';
+import { Route, Router, Routes } from 'react-router-dom';
+import Login from './pages/loginPage/Login';
+import Nominee from './pages/nominee/Nominee';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [isAuth, setIsAuth] = useState("");
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("user"));
+    if ( items && typeof items == 'object') {
+
+          setIsAuth(true);
+ 
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
+  
+  console.log(localStorage.getItem('user'))
+  const MainLayOut= () => {
+    
+    return (
+      <Routes>
+     <Route path="*" element={<Nominee/>}/>
+  </Routes>
+  );}
+  const Auth = ()=>{
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+   <Route path="*" element={<Login/>}/>
+</Routes>
+)}
+return isAuth ? MainLayOut() : Auth();
+
 }
 
 export default App;
