@@ -1,7 +1,8 @@
 import React from 'react'
 import './card.css'
-const Card = ({ title,  imageUrl ,onButtonClick}) => {
-    console.log(typeof imageUrl)
+import { useSelector } from 'react-redux';
+const Card = ({ title,  imageUrl ,onButtonClick,category}) => {
+  const { nomineeData, nomineechosen } = useSelector((state) => state.nominee);
     return (
       <div className="card">
         <form>
@@ -10,7 +11,10 @@ const Card = ({ title,  imageUrl ,onButtonClick}) => {
         <div className="card-content">
           <h2 className="card-title">{title}</h2>
         </div>
-        {onButtonClick&&<button onClick={onButtonClick} type='button' className='card-btn'>Select</button>}
+        {onButtonClick&&<button onClick={onButtonClick} 
+        type='button' className='card-btn'
+        disabled={nomineechosen.find((element) => element.category===category)}
+        >Select</button>}
         </form>
       </div>
     );

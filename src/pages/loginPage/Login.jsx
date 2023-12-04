@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./login.css";
 import { useFormik } from "formik";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/Slices/UsersSlice";
 function Login() {
-  const { usersData,  loading, error } = useSelector(
-    (state) => state.users
-  );
+  const { userToken  } = useSelector((state) => state.users);
   const dispach=useDispatch()
   const navigate = useNavigate();
+
+  useEffect(() => {
+   if (userToken) {
+    navigate('/nominee')
+   }
+  }, [userToken,navigate])
   const[errorUserName,setErrorUserName]=useState('')
   const[errorPassword,setErrorPassword]=useState('')
   const[errorLogin,setErrorLogin]=useState('')
@@ -21,33 +24,29 @@ const formik = useFormik({
   },
   onSubmit: async(values) => {
      if (values.userName==='') {
-      console.log('error')
       setErrorUserName('required')
       return false
      } else{
       setErrorUserName('')
      }
      if (values.password==='') {
-      console.log('error')
       setErrorPassword('required')
       return false
      }else{
       setErrorPassword('')
      }
-     console.log(values)
      const myPromise = ()=>Promise.resolve(
       dispach(loginUser(values))
     )
     myPromise().then((res)=>{
       if (res.payload) {
         setErrorLogin('')
-        navigate('/')
-        window.location.reload();
+        navigate('/nominee')
+        // window.location.reload();
         // return   <Navigate replace to="/" />
         
       }else{
         setErrorLogin('Your Password or email wrong')
-        console.log(false)
       }
     })
    

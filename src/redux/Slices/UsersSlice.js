@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
+const userToken = localStorage.getItem('userToken')
+  ? localStorage.getItem('userToken')
+  : null
 export const loginUser = createAsyncThunk('auth/login', async(values, thunkAPI) => {
   const {rejectWithValue} = thunkAPI;
 
@@ -10,6 +12,7 @@ export const loginUser = createAsyncThunk('auth/login', async(values, thunkAPI) 
     const checkUser= await response.data.users.find((element)=>element.userName===values.userName&&element.password===values.password)
 
     localStorage.setItem('user',JSON.stringify(checkUser))
+    localStorage.setItem('userToken',JSON.stringify(checkUser.token))
 
     return checkUser;
     
@@ -25,6 +28,7 @@ export const logoutUser = createAsyncThunk('auth/login', async(_, thunkAPI) => {
   
   try {
     localStorage.removeItem('user')  
+    localStorage.removeItem('userToken')  
 
   } catch (error) {
     return rejectWithValue(error.message);
@@ -32,7 +36,8 @@ export const logoutUser = createAsyncThunk('auth/login', async(_, thunkAPI) => {
 
 })
 const initialState = {
-  usersData: {},
+  usersData: null,
+  userToken,
   loading: false,
   error: false,
 };
@@ -49,6 +54,7 @@ const usersSlice = createSlice({
       [loginUser.fulfilled]: (state, action) => {
         state.loading = false;
        state.usersData=action.payload
+       state.userToken = action.payload.userToken
       },
       [loginUser.rejected]: (state, action) => {
         state.loading = false;

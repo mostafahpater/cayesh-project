@@ -7,6 +7,7 @@
 }
 .category{
     background-color: #34AC9C;
+    text-transform: capitalize;
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 2px;

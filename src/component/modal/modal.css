@@ -33,3 +33,6 @@
     font-size: 20px;
     cursor: pointer;
   }
+  .modal-content h2{
+    text-align: center;
+  }

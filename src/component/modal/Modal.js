@@ -3,7 +3,7 @@ import './modal.css'
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '../card/Card';
 function Modal({ isOpen, onClose }) {
-    const { nomineechosen,  loading, error } = useSelector(
+    const { nomineechosen } = useSelector(
         (state) => state.nominee
       );
       const dispatch=useDispatch()
@@ -13,7 +13,7 @@ function Modal({ isOpen, onClose }) {
       <span className="close-btn" onClick={()=>onClose(false)}>
         X
       </span>
-      <h2>Ballot</h2>
+      <h2>Success</h2>
       <div className='cards-data'>
       {nomineechosen?.map((item,index)=>(
 

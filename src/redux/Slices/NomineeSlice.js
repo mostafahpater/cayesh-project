@@ -7,7 +7,6 @@ export const getNominee = createAsyncThunk('nominee/data', async(_, thunkAPI) =>
   
   try {
     const response = await axios.get('ballotData.json')
-    console.log(response)
     return response;
     
 
@@ -19,7 +18,6 @@ export const getNominee = createAsyncThunk('nominee/data', async(_, thunkAPI) =>
 export const setNominee = createAsyncThunk('nominee/chosen', async(values, thunkAPI) => {
     const {rejectWithValue} = thunkAPI;
     try {
-        console.log(values)
       return values; 
     } catch (error) {
       return rejectWithValue(error.message);

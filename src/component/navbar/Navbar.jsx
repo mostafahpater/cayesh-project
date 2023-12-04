@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import './navbar.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { logoutUser } from '../../redux/Slices/UsersSlice'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 function Navbar() {
+  const userToken = localStorage.getItem('userToken')
   const dispatch=useDispatch()
+  const navigate=useNavigate()
   const [userName, setUserName] = useState('')
   useEffect(()=>{
     setUserName(JSON.parse(localStorage.getItem('user')))
-  },[])
-const logout=()=>{
-  dispatch(logoutUser())
-  window.location.reload();
+  },[localStorage.getItem('user')])
+const logout=async()=>{
+await  dispatch(logoutUser())
+await  navigate('/login')
 }
   return (
     <div>
-   {localStorage.getItem('user')&&  <ul className="topnav">
+   {userToken&&  <ul className="topnav">
   <li><NavLink className="active" href="#home">Navbar</NavLink></li>
   {userName&&<li className="right"><p>Hi {userName.userName}</p><NavLink onClick={()=>logout()}>Logout</NavLink></li>}
 </ul>}
