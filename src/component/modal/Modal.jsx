@@ -1,12 +1,11 @@
 import React from 'react'
 import './modal.css'
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import Card from '../card/Card';
 function Modal({ isOpen, onClose }) {
     const { nomineechosen } = useSelector(
         (state) => state.nominee
       );
-      const dispatch=useDispatch()
   return (
     <div className={`custom-modal ${isOpen ? 'open' : ''}`}>
     <div className="modal-content">

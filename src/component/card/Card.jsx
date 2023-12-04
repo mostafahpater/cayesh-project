@@ -1,8 +1,8 @@
 import React from 'react'
 import './card.css'
 import { useSelector } from 'react-redux';
-const Card = ({ title,  imageUrl ,onButtonClick,category}) => {
-  const { nomineeData, nomineechosen } = useSelector((state) => state.nominee);
+const Card = ({ title,  onButtonClick,category}) => {
+  const { nomineechosen } = useSelector((state) => state.nominee);
     return (
       <div className="card">
         <form>

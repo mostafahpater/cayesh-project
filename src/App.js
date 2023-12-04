@@ -1,9 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
-import { Navigate, Route, Router, Routes } from 'react-router-dom';
+import { Navigate, Route,  Routes } from 'react-router-dom';
 import Login from './pages/loginPage/Login';
 import Nominee from './pages/nominee/Nominee';
-import { useEffect, useState } from 'react';
 
 function App() {
     return (

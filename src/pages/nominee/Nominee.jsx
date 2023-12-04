@@ -9,7 +9,7 @@ function Nominee() {
   const userToken = localStorage.getItem('userToken')
   const [modalOpen, setModalOpen] = useState(false);
   const navigate = useNavigate();
-  const { nomineeData, nomineechosen } = useSelector((state) => state.nominee);
+  const { nomineeData } = useSelector((state) => state.nominee);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!userToken) {

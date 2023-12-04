@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./login.css";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../../redux/Slices/UsersSlice";
 function Login() {
-  const { userToken  } = useSelector((state) => state.users);
+  const userToken = localStorage.getItem('userToken')
   const dispach=useDispatch()
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ function Login() {
    if (userToken) {
     navigate('/nominee')
    }
-  }, [userToken,navigate])
+  }, [])
   const[errorUserName,setErrorUserName]=useState('')
   const[errorPassword,setErrorPassword]=useState('')
   const[errorLogin,setErrorLogin]=useState('')
